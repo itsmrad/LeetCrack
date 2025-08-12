@@ -4,7 +4,12 @@ import PasswordInput from "@/components/ui/passwordinput";
 import { aiModels } from "@/utils/constants";
 import { KeyRoundIcon } from "lucide-react";
 import { useApiKeyStore } from "@/store/store";
-import { saveApiFormData, getApiFormData } from "@/utils/apikeyStorage"; // Assuming this is the correct import path
+import {
+	saveApiFormData,
+	getApiFormData,
+	clearApiFormData,
+} from "@/utils/apikeyStorage"; // Assuming this is the correct import path
+import { Button } from "@/components/ui/button";
 
 export default function CredentialForm() {
 	const {
@@ -30,8 +35,19 @@ export default function CredentialForm() {
 	// If data is loaded and apiKey/modelName/modelId are present, skip setup
 	if (isLoaded && apiKey && modelName && modelId) {
 		return (
-			<div className="flex items-center justify-center h-full">
-				<span className="text-green-600">API Key already set up!</span>
+			<div className="flex items-center justify-center p-4 font-sans relative overflow-hidden w-[400px] h-[600px]">
+				<Button
+					variant="destructive"
+          className="cursor-pointer"
+					onClick={async () => {
+						await clearApiFormData();
+						setApiKey("");
+						setModelData("", "");
+						console.log("API Key reset.");
+						window.location.reload(); // Optionally reload to show the form again
+					}}>
+					Reset API Key
+				</Button>
 			</div>
 		);
 	}

@@ -11,7 +11,7 @@ export interface ApiFormData {
 export async function saveApiFormData(data: ApiFormData): Promise<void> {
 	try {
 		await storage.setItem(`local:${API_FORM_KEY}`, data);
-		console.log("Saved apiFormData to local storage:", data);
+		console.log("Saved apiFormData to local storage");
 	} catch (err) {
 		console.error("Failed to save apiFormData:", err);
 		throw err;
@@ -21,10 +21,10 @@ export async function saveApiFormData(data: ApiFormData): Promise<void> {
 export async function getApiFormData(): Promise<ApiFormData | null> {
 	try {
 		const data = await storage.getItem<ApiFormData>(`local:${API_FORM_KEY}`);
-		console.log("Loaded apiFormData from local storage:", data);
+		console.log("Loaded apiFormData from local storage");
 		return data ?? null;
 	} catch (err) {
-		console.error("Failed to load apiFormData:", err);
+		console.error("Failed to load apiFormData: ", err);
 		return null;
 	}
 }
