@@ -6,6 +6,13 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   srcDir: 'src',
+
+  manifest: ({ browser, manifestVersion, mode, command }) => {
+    return {
+      // ...
+    };
+  },
+
   vite: () => ({
     plugins: [
       tailwindcss()
