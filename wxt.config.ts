@@ -7,10 +7,8 @@ export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   srcDir: 'src',
 
-  manifest: ({ browser, manifestVersion, mode, command }) => {
-    return {
-      // ...
-    };
+  manifest: {
+    permissions: ['storage'],
   },
 
   vite: () => ({

@@ -6,6 +6,7 @@ export interface ApiKeyState {
   modelId: string;
   setApiKey: (apiKey: string) => void;
   setModelData: (modelId: string, modelName: string) => void;
+  loadFromStorage: () => Promise<void>;
 }
 
 export const useApiKeyStore = create<ApiKeyState>()((set, get) => ({
@@ -16,6 +17,16 @@ export const useApiKeyStore = create<ApiKeyState>()((set, get) => ({
   setApiKey: (apiKey: string) => set({ apiKey }),
   setModelData: (modelId: string, modelName: string) => {
     set({ modelId, modelName });
+  },
+  loadFromStorage: async () => {
+    const data = await getApiFormData();
+    if (data) {
+      set({
+        apiKey: data.apiKey,
+        modelName: data.modelName,
+        modelId: data.modelId,
+      });
+    }
   }
 }));
 
