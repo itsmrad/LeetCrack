@@ -7,9 +7,16 @@ export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   srcDir: 'src',
 
-  manifest: {
-    permissions: ['storage'],
-  },
+  manifest:({ browser, manifestVersion, mode, command }) => ({
+    permissions: [
+      'storage',
+      'activeTab',
+      'scripting',
+      'contextMenus',
+      'tabs',
+      'declarativeNetRequest'
+    ],
+  }),
 
   vite: () => ({
     plugins: [
