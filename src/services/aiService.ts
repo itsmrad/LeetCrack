@@ -4,7 +4,7 @@ import { HumanMessage } from "@langchain/core/messages";
 export async function sendToAIAPI(payload: any) {
 	const model = new ChatGoogleGenerativeAI({
 		model: "gemini-2.5-flash",
-		apiKey: process.env.GEMINI_API_KEY,
+		apiKey: process.env.WXT_GEMINI_API_KEY,
 	});
 
 	// Compose the prompt using the payload
